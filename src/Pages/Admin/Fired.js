@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { BsArrowLeft, BsArrowRight, BsCreditCard } from 'react-icons/bs';
 import { FiSearch, FiMoreVertical } from 'react-icons/fi';
+import Header from './Header';
 
 
 const Fired = () => {
@@ -89,7 +90,7 @@ const Fired = () => {
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl overflow-hidden">
                 <div className="mb-8">
                     <div className="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto sm:flex sm:items-center sm:justify-between">
-                        {/* <Header category="System Users" title="employees with Approved Status" /> */}
+                         <Header category="System Users" title="Employees with Fired Status" /> 
                         <div className="mt-4 mr-0 mb-0 ml-0 sm:mt-0">
                             <p className="sr-only">Search employee</p>
                             <div className="relative">

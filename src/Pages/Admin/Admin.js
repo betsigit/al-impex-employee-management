@@ -1,5 +1,6 @@
 import React from 'react';
 import Fired from './Fired';
+import Hired from './Hired';
 
 const Admin = () => {
 
@@ -17,6 +18,7 @@ const Admin = () => {
                     <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
                     </div>
                     <div className="text-bold">
+                        <Hired />
                         <Fired />
                     </div>
 
