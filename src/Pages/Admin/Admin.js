@@ -6,6 +6,7 @@ import Fired from './Fired'
 import AdminSidebar from './AdminSidebar'
 import AdminNavbar from './AdminNavbar'
 import Pending from './Pending';
+import Adminboard from './Adminboard';
 
 const Admin = () => {
 
@@ -51,6 +52,7 @@ const Admin = () => {
             {isClicked.fired && <Fired />}
             {isClicked.hired && <Hired />}
             {isClicked.pending && <Pending />}
+            {isClicked.adminBoard && <Adminboard />}
 
 
           </div>

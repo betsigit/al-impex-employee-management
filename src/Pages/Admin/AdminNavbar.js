@@ -67,14 +67,14 @@ const [notifications, setNotifications] = useState(false)
       <div className="flex">
         <Fragment>
           <div className=" relative flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
-            <NavButton
+            {/* <NavButton
               title="Notification"
               dotColor="#FF5C8E"
               customFunc={() => handleClick("notification")}
               color={currentColor}
               icon={<RiNotification3Line className="mx-auto w-6 h-6 text-gray-600 dark:text-gray-300" />}
-            />
-            {notifications ?
+            /> */}
+            {/* {notifications ?
               <span
                 style={{ background: "#FF5C8E" }}
                 className="absolute inline-flex items-center justify-center rounded-full h-4 w-4 right-2 top-2 text-white text-center"
@@ -82,7 +82,7 @@ const [notifications, setNotifications] = useState(false)
                 {notifications.length}
               </span>
               : ""
-            }
+            } */}
           </div>
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
             onClick={() => handleClick("userProfile")}
