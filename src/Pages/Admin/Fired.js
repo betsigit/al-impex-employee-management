@@ -298,4 +298,4 @@ const Fired = () => {
     )
 }
 
-export default Fired
+export default Fired 

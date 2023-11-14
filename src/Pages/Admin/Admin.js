@@ -7,6 +7,9 @@ import AdminSidebar from './AdminSidebar'
 import AdminNavbar from './AdminNavbar'
 import Pending from './Pending';
 import Adminboard from './Adminboard';
+import InterviewForm from './InterviewForm';
+
+
 
 const Admin = () => {
 
@@ -53,6 +56,9 @@ const Admin = () => {
             {isClicked.hired && <Hired />}
             {isClicked.pending && <Pending />}
             {isClicked.adminBoard && <Adminboard />}
+            {isClicked.InterviewForm && <InterviewForm />}
+
+
 
 
           </div>
