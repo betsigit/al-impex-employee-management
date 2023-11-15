@@ -22,14 +22,14 @@ const Fired = () => {
     };
 
     const data = [
-        { id: 1, email: "betse@gmail.com", city: "Addis Ababa", address: "4 killo", firstName: "Betselot", lastName: 'Me ' },
-        { id: 2, email: "betse@gmail.com", city: "Addis Ababa", address: "bole ", firstName: "Betselot", lastName: 'betsi' },
-        { id: 3, email: "betse@gmail.com", city: "Addis Ababa", address: "22 square", firstName: "Betselot", lastName: 'Gatwech' },
-        { id: 4, email: "betse@gmail.com", city: "Addis Ababa", address: "Shore Mead ", firstName: "Betselot", lastName: 'Dema' },
-        { id: 5, email: "betse@gmail.com", city: "Addis Ababa", address: "5 kilo", firstName: "Betselot", lastName: 'Ohana' },
-        { id: 6, email: "betse@gmail.com", city: "Addis Ababa", address: "Gerji", firstName: "Betselot", lastName: 'Sunny' },
-        { id: 7, email: "betse@gmail.com", city: "Addis Ababa", address: "Mexico", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 8, email: "betse@gmail.com", city: "Addis Ababa", address: "Merkato", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 1, email: "betse@gmail.com", city: "Addis Ababa", address: "4 killo", firstName: "Betselot", lastName: 'Tadele ' },
+        { id: 2, email: "betse12@gmail.com", city: "Addis Ababa", address: "bole ", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 3, email: "minte@gmail.com", city: "Addis Ababa", address: "22 square", firstName: "Tsion", lastName: 'Gatwech' },
+        { id: 4, email: "tsi@gmail.com", city: "Addis Ababa", address: "Shore Mead ", firstName: "Tsion", lastName: 'Dema' },
+        { id: 5, email: "tsi12@gmail.com", city: "Addis Ababa", address: "5 kilo", firstName: "mintesnot", lastName: 'Ohana' },
+        { id: 6, email: "minte12@gmail.com", city: "Addis Ababa", address: "Gerji", firstName: "mintesnot", lastName: 'Sunny' },
+        { id: 7, email: "mintes@gmail.com", city: "Addis Ababa", address: "Mexico", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 8, email: "tsion@gmail.com", city: "Addis Ababa", address: "Merkato", firstName: "Betselot", lastName: 'Tadele' },
         { id: 9, email: "betse@gmail.com", city: "Addis Ababa", address: "Piasa", firstName: "Betselot", lastName: 'Tadele' },
         { id: 10, email: "betse@gmail.com", city: "Addis Ababa", address: "Megenagna", firstName: "Betselot", lastName: 'Tadele' },
     ]

@@ -92,9 +92,9 @@ console.log(data);
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-indigo-700
-                             bg-white border rounded-md focus:border-indigo-400
-                              focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-stone-700
+                             bg-white border rounded-md focus:border-stone-400
+                              focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
                               value={name} onChange={(e)=> setName(e.target.value)}
                         />
                     </div>
@@ -108,8 +108,8 @@ console.log(data);
                         <input
                             type="email"
                             className="block w-full px-4 py-2 mt-2
-                             text-indigo-700 bg-white border rounded-md focus:border-indigo-400
-                              focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                             text-stone-700 bg-white border rounded-md focus:border-stone-400
+                              focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
                               value={email} onChange={(e)=> setEmail(e.target.value)}
                         />
                     </div>
@@ -122,9 +122,9 @@ console.log(data);
                         </label>
                         <input
                             type="number"
-                            className="block w-full px-4 py-2 mt-2 text-indigo-700
-                             bg-white border rounded-md focus:border-indigo-400
-                              focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-stone-700
+                             bg-white border rounded-md focus:border-stone-400
+                              focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
                               value={phoneNo} onChange={(e)=> setphoneNo(e.target.value)}
                         />
                     </div>
@@ -137,9 +137,9 @@ console.log(data);
                         </label>
                         <input
                             type="number"
-                            className="block w-full px-4 py-2 mt-2 text-indigo-700
-                             bg-white border rounded-md focus:border-indigo-400
-                              focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-stone-700
+                             bg-white border rounded-md focus:border-stone-400
+                              focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
                               value={department} onChange={(e)=> setDepartment(e.target.value)}
                         />
                     </div>
