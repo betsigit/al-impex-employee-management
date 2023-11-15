@@ -16,11 +16,7 @@ function App() {
           </div>
         </ContextProvider>
       </BrowserRouter>
-<<<<<<< HEAD
-      
-=======
     
->>>>>>> 2ad0ff3998ad4fc90e8d8a6ad568d471a7b78be4
   );
 }
 
