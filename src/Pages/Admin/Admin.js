@@ -6,8 +6,8 @@ import AdminSidebar from './AdminSidebar';
 import AdminNavbar from './AdminNavbar';
 import Pending from './Pending';
 import Adminboard from './Adminboard';
-import Layout from '../Component/Layout/Layout';
-import InterviewForm from './InterviewForm';
+//import Layout from '../Component/Layout/Layout';
+import Footer from '../Component/Footer/Footer';
 
 
 const Admin = () => {
@@ -18,12 +18,14 @@ const Admin = () => {
     isClicked,
   } = useStateContext();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    handleClick("hired");
+    handleClick("adminBoard");
+// eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Layout>
+    
       <div className={currentMode === 'Dark' ? 'dark' : ''}>
         <div className="flex relative dark:bg-main-dark-bg">
           {activeMenu ? (
@@ -50,12 +52,12 @@ const Admin = () => {
               {isClicked.hired && <Hired />}
               {isClicked.pending && <Pending />}
               {isClicked.adminBoard && <Adminboard />}
-              {isClicked.InterviewForm && <InterviewForm />}
             </div>
+            <Footer />
           </div>
         </div>
       </div>
-      </Layout>
+   
    
   );
 };

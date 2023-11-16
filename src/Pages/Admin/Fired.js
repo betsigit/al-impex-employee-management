@@ -1,8 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { BsArrowLeft, BsArrowRight, BsCreditCard } from 'react-icons/bs';
 import { FiSearch, FiMoreVertical } from 'react-icons/fi';
-import Header from './Header';
+import Header from '../Component/Header';
+import UserModal from './UserModal';
 
 
 const Fired = () => {
@@ -22,16 +23,16 @@ const Fired = () => {
     };
 
     const data = [
-        { id: 1, email: "betse@gmail.com", city: "Addis Ababa", address: "4 killo", firstName: "Betselot", lastName: 'Me ' },
-        { id: 2, email: "betse@gmail.com", city: "Addis Ababa", address: "bole ", firstName: "Betselot", lastName: 'betsi' },
-        { id: 3, email: "betse@gmail.com", city: "Addis Ababa", address: "22 square", firstName: "Betselot", lastName: 'Gatwech' },
-        { id: 4, email: "betse@gmail.com", city: "Addis Ababa", address: "Shore Mead ", firstName: "Betselot", lastName: 'Dema' },
-        { id: 5, email: "betse@gmail.com", city: "Addis Ababa", address: "5 kilo", firstName: "Betselot", lastName: 'Ohana' },
-        { id: 6, email: "betse@gmail.com", city: "Addis Ababa", address: "Gerji", firstName: "Betselot", lastName: 'Sunny' },
-        { id: 7, email: "betse@gmail.com", city: "Addis Ababa", address: "Mexico", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 8, email: "betse@gmail.com", city: "Addis Ababa", address: "Merkato", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 9, email: "betse@gmail.com", city: "Addis Ababa", address: "Piasa", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 10, email: "betse@gmail.com", city: "Addis Ababa", address: "Megenagna", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 1, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "4 killo", firstName: "Betselot", lastName: 'Me ' },
+        { id: 2, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "bole ", firstName: "Betselot", lastName: 'betsi' },
+        { id: 3, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "22 square", firstName: "Betselot", lastName: 'Gatwech' },
+        { id: 4, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Shore Mead ", firstName: "Betselot", lastName: 'Dema' },
+        { id: 5, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "5 kilo", firstName: "Betselot", lastName: 'Ohana' },
+        { id: 6, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Gerji", firstName: "Betselot", lastName: 'Sunny' },
+        { id: 7, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Mexico", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 8, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Merkato", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 9, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Piasa", firstName: "Betselot", lastName: 'Tadele' },
+        { id: 10, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Megenagna", firstName: "Betselot", lastName: 'Tadele' },
     ]
 
     const PAGE_SIZE = 3;
@@ -258,9 +259,9 @@ const Fired = () => {
 
             </div>
 
-            {/* {showUserModal && (
-                <Modal User={employee} handleModalClose={handleModalClose} />
-            )} */}
+            {showUserModal && (
+                <UserModal User={employee} handleModalClose={handleModalClose} />
+            )}
 
             {showAlert && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
