@@ -1,4 +1,6 @@
-
+//import React, { useState } from 'react';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from './firebase'; // Import your Firebase configuration
 import React, { useState } from 'react';
 import Header from '../Component/Header'
 import { AiOutlineClose } from 'react-icons/ai'
@@ -16,19 +18,33 @@ const InterviewForm = ({ handleModalClose }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   // const [questions, setQuestions] = useState([{ question: '', answer: '' }]);
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-    console.log(event.target.files[0]);
-  }
-  const handleUpload = () => {
-    if (selectedFile) {
-      // Perform file upload logic here (e.g., send the file to the server)
-      console.log('Uploading file:', selectedFile);
-      // Reset the selected file after upload
-      setSelectedFile(null);
-    } else {
-      alert('Please select a file before uploading.');
+  const [file, setFile] = useState(null);
+  const [downloadURL, setDownloadURL] = useState(null);
+
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = async () => {
+    try {
+      if (file) {
+        const storageRef = ref(storage, `uploaded_files/${file.name}`);
+        await uploadBytes(storageRef, file);
+
+        // Get the download URL for the uploaded file
+        const url = await getDownloadURL(storageRef);
+
+        // Set the download URL to state
+        setDownloadURL(url);
+
+        console.log('File uploaded successfully!');
+      } else {
+        console.error('No file selected!');
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
     }
   };
   const handleChange = (e) => {
@@ -92,12 +108,14 @@ const InterviewForm = ({ handleModalClose }) => {
   <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
 
     <Header category="Employement" title="INTERVIEW Q & A" />
-
+    
+        
     <button
       type="button"
-      className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-      onClick={handleModalClose}
-      data-modal-hide="editUserModal"
+      className="text-gray-400 bg-transparent hover:bg-gray-200
+       hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
+        dark:hover:bg-gray-600 dark:hover:text-white"
+        onClick={handleModalClose}
     >
       <AiOutlineClose className="w-5 h-5" />
     </button>
@@ -107,10 +125,10 @@ const InterviewForm = ({ handleModalClose }) => {
   </h1>
   <div className="mb-2">
     <label
+     
       for="uploadCV"
-      className="block text-sm font-semibold text-gray-800">Upload CV
+      className="block text-sm font-semibold text-gray-800" onChange={handleFileChange}>Upload CV
     </label>
-
 
 <input
       type="file"
@@ -118,6 +136,14 @@ const InterviewForm = ({ handleModalClose }) => {
       onChange={handleFileChange}
     />
     <button onClick={handleUpload}>Upload File</button>
+    {downloadURL && (
+        <div>
+          <h2>File Preview</h2>
+          <a href={downloadURL} target="_blank" rel="noopener noreferrer">
+          {file.name}
+          </a>
+        </div>
+      )}
      
         {/* User Info Fields */}
         <label

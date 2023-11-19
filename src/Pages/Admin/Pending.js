@@ -102,7 +102,8 @@ const Pending = () => {
                                 <input
                                     placeholder="Search employees "
                                     type="search"
-                                    className="block pt-2 pr-0 pb-2 pl-10 w-full py-2 border border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm"
+                                    className="block pt-2 pr-0 pb-2 pl-10 w-full py-2 border border-gray-300 rounded-lg focus:ring-indigo-600
+                                     focus:border-indigo-600 sm:text-sm"
                                 />
                             </div>
                         </div>
@@ -156,7 +157,8 @@ const Pending = () => {
                                                 </td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 6, 2022</td>
                                                 <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800" style={{ color: '#977062', backgroundColor: '#EDE1DD' }}>
+                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60
+                                                     dark:bg-gray-800" style={{ color: '#977062', backgroundColor: '#EDE1DD' }}>
                                                         <BsCreditCard />
 
                                                         <h2 className="text-sm font-normal">{user.email}</h2>
@@ -184,24 +186,29 @@ const Pending = () => {
 
                                                     {showActions[index] && (
                                                         <div
-                                                            className="absolute -top-14 right-20 z-100 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                                                            className="absolute -top-14 right-20 z-100 w-44 bg-white rounded divide-y divide-gray-100 shadow
+                                                             dark:bg-gray-700 dark:divide-gray-600"
                                                         >
-                                                            <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="benq-ex2710q-dropdown-button">
+                                                            <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" 
+                                                            aria-labelledby="benq-ex2710q-dropdown-button">
                                                                 <li>
-                                                                    <button onClick={() => handleShow(user)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                    <button onClick={() => handleShow(user)} className="block py-2 px-4 hover:bg-gray-100
+                                                                     dark:hover:bg-gray-600 dark:hover:text-white">
                                                                         Show
                                                                     </button>
                                                                 </li>
                                                                 <li>
                                                                     <button
                                                                         onClick={() => handleFireClick(user)}
-                                                                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100
+                                                                         dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                     >
                                                                         Fire
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                                    <button className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100
+                                                                     dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                     >
                                                                         Delete
                                                                     </button>
@@ -211,7 +218,8 @@ const Pending = () => {
                                                         </div>
                                                     )}
                                                     <button
-                                                        className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                                        className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500
+                                                         hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                                                         type="button"
                                                         onClick={() => toggleActions(index)}
                                                     >
@@ -229,7 +237,9 @@ const Pending = () => {
                 </div>
                 <div className="flex items-center justify-between mt-6">
                     <button
-                        className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+                        className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200
+                         bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700
+                          dark:hover:bg-gray-800"
                         onClick={() => goToPage(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
