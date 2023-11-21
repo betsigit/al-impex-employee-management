@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useStateContext } from '../../context/ContextProvider';
 import Hired from './Hired';
 import Fired from './Fired';
-import AdminSidebar from './AdminSidebar';
+
+import Sidebar from './Sidebar';
 import AdminNavbar from './AdminNavbar';
 import Pending from './Pending';
 import Adminboard from './Adminboard';
@@ -29,12 +30,12 @@ const Admin = () => {
       <div className={currentMode === 'Dark' ? 'dark' : ''}>
         <div className="flex relative dark:bg-main-dark-bg">
           {activeMenu ? (
-            <div className="w-58 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-              <AdminSidebar />
+            <div className="z-10 w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
+              <Sidebar />
             </div>
           ) : (
             <div className="w-0 dark:bg-secondary-dark-bg">
-              <AdminSidebar />
+              <Sidebar />
             </div>
           )}
           <div

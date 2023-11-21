@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { BsArrowLeft, BsArrowRight, BsCreditCard } from 'react-icons/bs';
 import { FiSearch, FiMoreVertical } from 'react-icons/fi';
 import Header from '../Component/Header';
 import UserModal from './UserModal';
-
+import { db } from '../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
 
 const Fired = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
+
+    const [employees, setEmployees] = useState([]);
+    const usersCollectionRef = collection(db, "fired");
 
     const [employee, setEmployee] = useState([]);
     const [showAlert, setShowAlert] = useState(null);
@@ -22,25 +26,13 @@ const Fired = () => {
         setShowAlert(false);
     };
 
-    const data = [
-        { id: 1, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "4 killo", firstName: "Betselot", lastName: 'Me ' },
-        { id: 2, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "bole ", firstName: "Betselot", lastName: 'betsi' },
-        { id: 3, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "22 square", firstName: "Betselot", lastName: 'Gatwech' },
-        { id: 4, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Shore Mead ", firstName: "Betselot", lastName: 'Dema' },
-        { id: 5, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "5 kilo", firstName: "Betselot", lastName: 'Ohana' },
-        { id: 6, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Gerji", firstName: "Betselot", lastName: 'Sunny' },
-        { id: 7, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Mexico", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 8, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Merkato", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 9, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Piasa", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 10, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Megenagna", firstName: "Betselot", lastName: 'Tadele' },
-    ]
 
     const PAGE_SIZE = 3;
-    const totalEmployees = data ? data.length : 0;
+    const totalEmployees = employees ? employees.length : 0;
     const totalPages = Math.ceil(totalEmployees / PAGE_SIZE);
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
-    const currentEmployees = data ? data.slice(startIndex, endIndex) : [];
+    const currentEmployees = employees ? employees.slice(startIndex, endIndex) : [];
 
     const goToPage = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -85,12 +77,20 @@ const Fired = () => {
         setShowUserModal(false);
     };
 
+    useEffect(() => {
+        const getUser = async () => {
+            const data = await getDocs(usersCollectionRef)
+            setEmployees(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        }
+        getUser()
+    }, [])
+
     return (
         <div className="mt-24 container px-4 mx-auto overflow-hidden">
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl overflow-hidden">
                 <div className="mb-8">
                     <div className="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto sm:flex sm:items-center sm:justify-between">
-                         <Header category="System Users" title="Employees with Fired Status" /> 
+                        <Header category="System Users" title="Employees with Fired Status" />
                         <div className="mt-4 mr-0 mb-0 ml-0 sm:mt-0">
                             <p className="sr-only">Search employee</p>
                             <div className="relative">
@@ -197,7 +197,7 @@ const Fired = () => {
                                                                         onClick={() => handleFireClick(user)}
                                                                         className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                     >
-                                                                        Fire
+                                                                        Hire
                                                                     </button>
                                                                 </li>
                                                                 <li>

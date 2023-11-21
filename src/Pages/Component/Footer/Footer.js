@@ -75,7 +75,7 @@ const Footer = () => (
               </div>
             </div>
             <div className="flex justify-between border-t border-cyan-800 py-4 text-gray-200">
-              <span>&copy; Al-impex 20023 <span id="year"></span></span>
+              <span>&copy; Al-impex 2023 <span id="year"></span></span>
               <span>All right reserved</span>
             </div>
           </div>

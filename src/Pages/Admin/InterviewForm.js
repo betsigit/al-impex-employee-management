@@ -4,14 +4,17 @@ import { storage } from './firebase'; // Import your Firebase configuration
 import React, { useState } from 'react';
 import Header from '../Component/Header'
 import { AiOutlineClose } from 'react-icons/ai'
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '../../firebase-config';
 
 
 const InterviewForm = ({ handleModalClose }) => {
 
   const [questions, setQuestions] = useState([{ question: '', answer: '' }]);
-  const [name, setName] = useState([]);
+  const [fname, setfName] = useState([]);
+  const [lname, setlName] = useState([]);
   const [phoneNo, setphoneNo] = useState([]);
-  const [email, setEmail] = useState([]);
+  const [Email, setEmail] = useState([]);
   const [department, setDepartment] = useState([]);
   const [User, setUser] = useState([]);
 
@@ -73,23 +76,16 @@ const InterviewForm = ({ handleModalClose }) => {
     
     console.log(questionsData);
     try {
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name,
-          Email: email,
-          Phoneno: phoneNo,
-          Department: department,
-          questions: questionsData,
-        }),
-      };
+      const docRef = await addDoc(collection(db, 'employee'), {
+        firstName: fname,
+        lastName: lname,
+        Email: Email,
+        Phoneno: phoneNo,
+        Department: department,
+        questions: questionsData,
+      });
 
-      const response = await fetch('https://al-impex-default-rtdb.firebaseio.com/Al-Impex.json', options);
-
-      if (response.ok) {
+      if (Response.ok) {
         alert('Message sent');
         // Additional logic after successful submission if needed
       } else {
@@ -101,7 +97,7 @@ const InterviewForm = ({ handleModalClose }) => {
   };
 
   return (
-    <div className=" bg-half-transparent  fixed inset-0  flex justify-center items-center overflow-y-auto">
+    <div className="z-10 bg-half-transparent  fixed inset-0  flex justify-center items-center overflow-y-auto">
      < div className="float-right h-screen dark:text-gray-200 bg-white dark:bg-[#484B52] max-w-screen w-full sm:w-full md:w-full lg:w-full xl:w-1/2 2xl:w-1/3 overflow-y-auto rounded-lg" style={{ width: "70%", height: "90%" }}>
 
 <div className="w-full p-6">
@@ -150,14 +146,31 @@ const InterviewForm = ({ handleModalClose }) => {
               for="fullname"
               className="block text-sm font-semibold text-gray-800"
             >
-              Fullname
+              FristName
             </label>
             <input
               type="text"
               className="block w-full px-4 py-2 mt-2 text-stone-700
                              bg-white border rounded-md focus:border-stone-400
                               focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              value={name} onChange={(e) => setName(e.target.value)}
+              value={fname} onChange={(e) => setfName(e.target.value)}
+            />
+          </div>
+ {/* User Info Fields */}
+ 
+ <div className="mb-2">
+ <label
+              for="lastName"
+              className="block text-sm font-semibold text-gray-800"
+            >
+            LastName
+            </label>
+            <input
+              type="text"
+              className="block w-full px-4 py-2 mt-2 text-stone-700
+                             bg-white border rounded-md focus:border-stone-400
+                              focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              value={lname} onChange={(e) => setlName(e.target.value)}
             />
           </div>
 
@@ -173,7 +186,7 @@ const InterviewForm = ({ handleModalClose }) => {
               className="block w-full px-4 py-2 mt-2
                              text-stone-700 bg-white border rounded-md focus:border-stone-400
                               focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              value={email} onChange={(e) => setEmail(e.target.value)}
+              value={Email} onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -200,7 +213,7 @@ const InterviewForm = ({ handleModalClose }) => {
               Department
             </label>
             <input
-              type="number"
+              type="text"
               className="block w-full px-4 py-2 mt-2 text-stone-700
                              bg-white border rounded-md focus:border-stone-400
                               focus:ring-stone-300 focus:outline-none focus:ring focus:ring-opacity-40"

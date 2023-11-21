@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { BsArrowLeft, BsArrowRight, BsCreditCard } from 'react-icons/bs';
 import { FiSearch, FiMoreVertical } from 'react-icons/fi';
 import Header from '../Component/Header';
 import UserModal from './UserModal';
 
+import { db } from '../../firebase-config'
+import { collection, getDocs } from 'firebase/firestore'
 
-const Pending = () => {
+
+const Fired = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
+    const [employees, setEmployees] = useState([]);
+    const usersCollectionRef = collection(db, "employee")
 
     const [employee, setEmployee] = useState([]);
     const [showAlert, setShowAlert] = useState(null);
@@ -22,25 +27,12 @@ const Pending = () => {
         setShowAlert(false);
     };
 
-    const data = [
-        { id: 1, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "4 killo", firstName: "Betselot", lastName: 'Me ' },
-        { id: 2, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "bole ", firstName: "Betselot", lastName: 'betsi' },
-        { id: 3, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "22 square", firstName: "Betselot", lastName: 'Gatwech' },
-        { id: 4, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Shore Mead ", firstName: "Betselot", lastName: 'Dema' },
-        { id: 5, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "5 kilo", firstName: "Betselot", lastName: 'Ohana' },
-        { id: 6, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Gerji", firstName: "Betselot", lastName: 'Sunny' },
-        { id: 7, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Mexico", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 8, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Merkato", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 9, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Piasa", firstName: "Betselot", lastName: 'Tadele' },
-        { id: 10, experience:"three years of software development", workHistory:"No Work History Yet",email: "betse@gmail.com", city: "Addis Ababa", address: "Megenagna", firstName: "Betselot", lastName: 'Tadele' },
-    ]
-
     const PAGE_SIZE = 3;
-    const totalEmployees = data ? data.length : 0;
+    const totalEmployees = employees ? employees.length : 0;
     const totalPages = Math.ceil(totalEmployees / PAGE_SIZE);
     const startIndex = (currentPage - 1) * PAGE_SIZE;
     const endIndex = startIndex + PAGE_SIZE;
-    const currentEmployees = data ? data.slice(startIndex, endIndex) : [];
+    const currentEmployees = employees ? employees.slice(startIndex, endIndex) : [];
 
     const goToPage = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -85,12 +77,20 @@ const Pending = () => {
         setShowUserModal(false);
     };
 
+    useEffect(() => {
+        const getUser = async () => {
+            const data = await getDocs(usersCollectionRef)
+            setEmployees(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        }
+        getUser()
+    }, [])
+
     return (
         <div className="mt-24 container px-4 mx-auto overflow-hidden">
             <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl overflow-hidden">
                 <div className="mb-8">
                     <div className="pt-0 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto sm:flex sm:items-center sm:justify-between">
-                         <Header category="System Users" title="Employees with Pending Status" /> 
+                         <Header category="System Users" title="Employees with Hired Status" /> 
                         <div className="mt-4 mr-0 mb-0 ml-0 sm:mt-0">
                             <p className="sr-only">Search employee</p>
                             <div className="relative">
@@ -102,8 +102,7 @@ const Pending = () => {
                                 <input
                                     placeholder="Search employees "
                                     type="search"
-                                    className="block pt-2 pr-0 pb-2 pl-10 w-full py-2 border border-gray-300 rounded-lg focus:ring-indigo-600
-                                     focus:border-indigo-600 sm:text-sm"
+                                    className="block pt-2 pr-0 pb-2 pl-10 w-full py-2 border border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm"
                                 />
                             </div>
                         </div>
@@ -132,9 +131,9 @@ const Pending = () => {
                                                 email
                                             </th>
 
-                                            <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                            {/* <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                 Address
-                                            </th>
+                                            </th> */}
                                             <th scope="col" className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                                 First Name
                                             </th>
@@ -157,14 +156,13 @@ const Pending = () => {
                                                 </td>
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">Jan 6, 2022</td>
                                                 <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60
-                                                     dark:bg-gray-800" style={{ color: '#977062', backgroundColor: '#EDE1DD' }}>
+                                                    <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800" style={{ color: '#977062', backgroundColor: '#EDE1DD' }}>
                                                         <BsCreditCard />
 
-                                                        <h2 className="text-sm font-normal">{user.email}</h2>
+                                                        <h2 className="text-sm font-normal">{user.Email}</h2>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                                                {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                     <div className="flex items-center gap-x-2">
                                                         <div>
                                                             <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
@@ -175,7 +173,7 @@ const Pending = () => {
                                                             </p>
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> */}
                                                 <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                     {user.firstName}
                                                 </td>
@@ -186,29 +184,24 @@ const Pending = () => {
 
                                                     {showActions[index] && (
                                                         <div
-                                                            className="absolute -top-14 right-20 z-100 w-44 bg-white rounded divide-y divide-gray-100 shadow
-                                                             dark:bg-gray-700 dark:divide-gray-600"
+                                                            className="absolute -top-14 right-20 z-100 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                                                         >
-                                                            <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" 
-                                                            aria-labelledby="benq-ex2710q-dropdown-button">
+                                                            <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="benq-ex2710q-dropdown-button">
                                                                 <li>
-                                                                    <button onClick={() => handleShow(user)} className="block py-2 px-4 hover:bg-gray-100
-                                                                     dark:hover:bg-gray-600 dark:hover:text-white">
+                                                                    <button onClick={() => handleShow(user)} className="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                                                         Show
                                                                     </button>
                                                                 </li>
                                                                 <li>
                                                                     <button
                                                                         onClick={() => handleFireClick(user)}
-                                                                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100
-                                                                         dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                     >
                                                                         Fire
                                                                     </button>
                                                                 </li>
                                                                 <li>
-                                                                    <button className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100
-                                                                     dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                                                    <button className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                                     >
                                                                         Delete
                                                                     </button>
@@ -218,8 +211,7 @@ const Pending = () => {
                                                         </div>
                                                     )}
                                                     <button
-                                                        className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500
-                                                         hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                                        className="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                                                         type="button"
                                                         onClick={() => toggleActions(index)}
                                                     >
@@ -237,9 +229,7 @@ const Pending = () => {
                 </div>
                 <div className="flex items-center justify-between mt-6">
                     <button
-                        className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200
-                         bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700
-                          dark:hover:bg-gray-800"
+                        className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
                         onClick={() => goToPage(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
@@ -309,4 +299,4 @@ const Pending = () => {
     )
 }
 
-export default Pending
+export default Fired

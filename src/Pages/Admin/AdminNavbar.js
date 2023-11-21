@@ -56,7 +56,7 @@ const [notifications, setNotifications] = useState(false)
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
 
   return (
-    <div className="flex justify-between items-center bg-gray-100 dark:bg-gray-800 dark:border-gray-700 shadow-2xl relative h-24">
+    <div className="z-0 flex justify-between items-center bg-gray-100 dark:bg-gray-800 dark:border-gray-700 shadow-2xl relative h-24">
       <NavButton
         title="Menu"
         customFunc={handleActiveMenu}

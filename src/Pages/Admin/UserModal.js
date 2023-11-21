@@ -6,7 +6,7 @@ const Modal = ({ User, handleModalClose }) => {
 
 
     return (
-        <div className=" bg-half-transparent fixed inset-0  flex justify-center items-center overflow-y-auto">
+        <div className="z-10 bg-half-transparent fixed inset-0  flex justify-center items-center overflow-y-auto">
             <div className="float-right h-screen dark:text-gray-200 bg-white dark:bg-[#484B52] max-w-screen w-full sm:w-full md:w-full lg:w-full xl:w-1/2 2xl:w-1/3 overflow-y-auto rounded-lg" style={{ width: "70%", height: "90%" }}>
                 {/* Modal content */}
                 <div
@@ -40,10 +40,10 @@ const Modal = ({ User, handleModalClose }) => {
                                         </div>
 
                                         
-                                        {User.email &&
+                                        {User.Email &&
                                             <div className="grid grid-cols-2">
                                                 <div className="px-4 py-2 font-semibold"> Email</div>
-                                                <div className="px-4 py-2">{User.email}</div>
+                                                <div className="px-4 py-2">{User.Email}</div>
                                             </div>
                                         }
                                         {User.address &&
@@ -59,13 +59,20 @@ const Modal = ({ User, handleModalClose }) => {
                                             </div>
                                         }
                                     </div>
-                                    {User.workHistory &&
-                                        <div className="flex flex-col">
-                                            <div className="px-4 py-2 font-semibold"> Work History</div>
-                                            <div className="px-4 py-2">{User.workHistory}</div>
-                                        </div>
-                                    }
-                                   
+                                    {User.questions && (
+  <div className="flex flex-col">
+    <div className="px-4 py-2 font-semibold">Work History</div>
+    {User.questions.map((questionObj, index) => (
+      <div key={index} className="px-4 py-2">
+        <p>Question: {questionObj.question}</p>
+        <p>Answer: {questionObj.answer}</p>
+      </div>
+    ))}
+    
+  </div>
+  
+)}
+
                                 </div>
 
                             </div>
