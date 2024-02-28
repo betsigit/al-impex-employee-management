@@ -46,7 +46,7 @@ const Fired = () => {
 
 
     const [showActions, setShowActions] = useState(Array(currentEmployees?.length).fill(false));
-    const [openIndex, setOpenIndex] = useState(null); // Track the index of the currently open toggle
+    const [openIndex, setOpenIndex] = useState(null); 
 
     const toggleActions = (index) => {
         const updatedShowActions = [...showActions];
