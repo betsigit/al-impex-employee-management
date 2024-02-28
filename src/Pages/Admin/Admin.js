@@ -19,7 +19,7 @@ const Admin = () => {
     isClicked,
   } = useStateContext();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     handleClick("adminBoard");
 // eslint-disable-next-line react-hooks/exhaustive-deps
