@@ -165,12 +165,7 @@ const Fired = () => {
                                                 {/* <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                                     <div className="flex items-center gap-x-2">
                                                         <div>
-                                                            <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-                                                                {user.city}
-                                                            </h2>
-                                                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                                                                {user.address}
-                                                            </p>
+                                                        
                                                         </div>
                                                     </div>
                                                 </td> */}
