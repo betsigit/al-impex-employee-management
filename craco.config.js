@@ -1,4 +1,4 @@
-// craco.con
+// craco.c
 module.exports = {
     style: {
       postcss: {
